@@ -1,0 +1,105 @@
+          import java.util.*;
+import java.util.Random;
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		List<Integer> l = new ArrayList<>();
+		Scanner sc = new Scanner(System.in);
+		Random r = new Random();
+		
+		System.out.print("Enter the name of Player 1: ");
+		String a = sc.nextLine();
+		System.out.print("Enter the name of Player 2: ");
+		String b = sc.nextLine();
+		
+		while(l.size()!=5)
+		{
+		    int r1 = r.nextInt(10) + 1;
+            if (!l.contains(r1)) 
+            {  
+                l.add(r1);
+            }
+		}
+		
+		System.out.println("Hello " +a+ " and " +b);
+		System.out.println("Computers has some five integers in mind");
+		System.out.println("you both can have five choices to guess");
+		
+		int player1Score = 0;
+        int player2Score = 0;
+        
+        List<Integer>p1=new ArrayList<>();
+        List<Integer>p2=new ArrayList<>();
+       
+       int guess;
+       int guess1;
+        System.out.println(a + ", make your guesses: ");
+        for (int i = 0; i < 3; i++) 
+        {
+            System.out.print("Guess " + (i + 1) + ": ");
+             guess = sc.nextInt();
+            
+            while(p1.contains(guess) || (p2.contains(guess)))
+            {
+                System.out.println("It is already chosen.. press other");
+                System.out.println("Choose another number: ");
+                guess = sc.nextInt();
+            }
+            
+            p1.add(guess);
+            if (l.contains(guess))
+            {
+                System.out.println("Correct!");
+                player1Score++;
+            } 
+            else 
+            {
+                System.out.println("Wrong guess.");
+            }
+        }
+         
+        System.out.println(b + ", make your guesses: ");
+        for (int i = 0; i < 3; i++) 
+        {
+            System.out.print("Guess " + (i + 1) + ": ");
+            guess1 = sc.nextInt();
+            
+            while(p1.contains(guess1) || (p2.contains(guess1)))
+            {
+                System.out.println("It is already chosen.. press other");
+                guess1 = sc.nextInt();
+            }
+            
+            
+            p2.add(guess1);
+            if (l.contains(guess1))
+            {
+                System.out.println("Correct!");
+                player2Score++;
+            } 
+            else 
+            {
+                System.out.println("Wrong guess.");
+            }
+        }
+        System.out.println("Final Scores:");
+        System.out.println(a + ": " + player1Score);
+        System.out.println(b + ": " + player2Score);
+        
+         if (player1Score > player2Score)
+         {
+             System.out.println(a+ " wins!!!");
+             System.out.println(b+ " Better luck next time!");
+         }
+         else if (player1Score < player2Score)
+         {
+             System.out.println(b+" wins!!!");
+             System.out.println(a+ " Better luck next time!");
+         }
+         else
+         {
+             System.out.println("Both the "+a+" and "+b+" tied." );
+         }
+	}
+}
